@@ -8,7 +8,7 @@ Illustration of Node app session management with passport
 
 `>node index.js`
 
-https://github.com/manju16832003/node-express-session-passport/blob/master/postman.png?raw=true
+<img src="https://github.com/manju16832003/node-express-session-passport/blob/master/postman.png?raw=true"/>
 
 ## Further improvements
 
