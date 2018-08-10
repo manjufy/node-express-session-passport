@@ -1,0 +1,22 @@
+{
+  "name": "express-session-passport",
+  "version": "1.0.0",
+  "description": "Node Express Passport Session example",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node",
+    "expressjs",
+    "passport"
+  ],
+  "author": "Manjunath Reddy <manju16832003@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0"
+  }
+}
