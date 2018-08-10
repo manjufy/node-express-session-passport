@@ -5,7 +5,10 @@ Illustration of Node app session management with passport
 # How to run
 
 `> npm install`
+
 `>node index.js`
+
+https://github.com/manju16832003/node-express-session-passport/blob/master/postman.png?raw=true
 
 ## Further improvements
 
