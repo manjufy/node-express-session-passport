@@ -1,5 +1,6 @@
 # Node Express Passport Session example
 
+Illustration of Node app session management with passport
 
 ## Further improvements
 
