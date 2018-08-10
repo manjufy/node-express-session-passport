@@ -1,11 +1,13 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const passport = require('passport')
+const jwt = require('jwt-simple')
 const LocalStrategy = require('passport-local').Strategy
 
 // for example
 const USERNAME = 'manju'
 const PASSWD = 'manju123'
+const SECRET = 'nomnom'
 
 const app = express()
 app.use(bodyParser.json())
@@ -17,7 +19,7 @@ app.use((req, res, next) => {
 
 passport.use(new LocalStrategy((username, password, done) => {
     if (username === USERNAME && password === PASSWD) {
-        done(null, 'TOKEN')
+        done(null, jwt.encode({ username }, SECRET))
         return
     }
 
