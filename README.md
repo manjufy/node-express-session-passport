@@ -17,6 +17,19 @@ With JWT encoding
 
 Session
 
+```
+    app.use(session({
+        name: 'manju.cookie', // optional; if not provided, cookie name would be connect.sid
+        genid: (req) => {
+            console.log('Session middleware', req.sessionID)
+            return uuid() // use UUID's for session id
+        },
+        secret: 'nomnomnom',
+        resave: false,
+        saveUninitialized: true
+    }))
+```
+
 <img src="https://github.com/manju16832003/node-express-session-passport/blob/master/session.png?raw=true"/>
 
 ## Further improvements
