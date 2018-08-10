@@ -1,4 +1,4 @@
-# Node+Express+Passport: Session, Authentication, Authorization with passport
+### Node+Express+Passport: Session, Authentication, Authorization with passport
 
 Illustration of Node app session management with passport
 
