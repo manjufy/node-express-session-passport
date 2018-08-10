@@ -34,4 +34,4 @@ app.post('/login', passport.authenticate('local', { session: false }), (req, res
 
 app.get('/', (req, res) => res.send('Node Express Passport Session example'))
 
-app.listen(3000, () => console.log('Listenning on port 3000'))
+app.listen(3000, () => console.log('Listening on port 3000'))
