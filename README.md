@@ -10,10 +10,10 @@ Illustration of Node app session management with passport
 
 Without JWT encoding
 
-<img src="https://github.com/manju16832003/node-express-session-passport/blob/master/postman.png?raw=true"/>
+<img src="https://github.com/manju16832003/node-express-session-passport/blob/master/images/postman.png?raw=true"/>
 
 With JWT encoding
-<img src="https://github.com/manju16832003/node-express-session-passport/blob/master/postman-jwt.png?raw=true"/>
+<img src="https://github.com/manju16832003/node-express-session-passport/blob/master/images/postman-jwt.png?raw=true"/>
 
 Session
 
@@ -30,7 +30,7 @@ Session
     }))
 ```
 
-<img src="https://github.com/manju16832003/node-express-session-passport/blob/master/session.png?raw=true"/>
+<img src="https://github.com/manju16832003/node-express-session-passport/blob/master/images/session.png?raw=true"/>
 
 ## Further improvements
 
