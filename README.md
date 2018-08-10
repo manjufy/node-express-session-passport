@@ -19,3 +19,7 @@ With JWT encoding
 
 - Use Session to authenticate and persist the session in either Cookie or Session storage
 - Use redis as a session storage
+
+https://scotch.io/tutorials/easy-node-authentication-setup-and-local
+
+https://codeburst.io/node-js-by-example-part-3-31a29f5d7e9c

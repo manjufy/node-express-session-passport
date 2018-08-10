@@ -3,6 +3,7 @@ const bodyParser = require('body-parser')
 const passport = require('passport')
 const jwt = require('jwt-simple')
 const LocalStrategy = require('passport-local').Strategy
+const BearerStrategy = require('passport-http-bearer')
 
 // for example
 const USERNAME = 'manju'
@@ -17,6 +18,18 @@ app.use((req, res, next) => {
     next()
 })
 
+passport.use(new BearerStrategy((token, done) => {
+    try {
+        const { username } = jwt.decode(token, SECRET)
+        if (username === USERNAME) {
+            done(null, username)
+            return
+        }
+    } catch (error) {
+        done(null, false)
+    }
+}));
+
 passport.use(new LocalStrategy((username, password, done) => {
     if (username === USERNAME && password === PASSWD) {
         done(null, jwt.encode({ username }, SECRET))
@@ -25,6 +38,19 @@ passport.use(new LocalStrategy((username, password, done) => {
 
     done(null, false)
 }))
+
+app.get('/todos', passport.authenticate('bearer', { session: false }), (_, res) => {
+    res.json([
+        {
+            id: 1,
+            todo: 'Test'
+        },
+        {
+            id: 2,
+            todo: 'Test'
+        }
+    ])
+})
 
 app.post('/login', passport.authenticate('local', { session: false }), (req, res) => {
     res.send({
