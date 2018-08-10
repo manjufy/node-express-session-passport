@@ -4,19 +4,40 @@ const passport = require('passport')
 const jwt = require('jwt-simple')
 const LocalStrategy = require('passport-local').Strategy
 const BearerStrategy = require('passport-http-bearer')
-
-// for example
-const USERNAME = 'manju'
-const PASSWD = 'manju123'
-const SECRET = 'nomnom'
+const session = require('express-session')
+const uuid = require('uuid')
 
 const app = express()
 app.use(bodyParser.json())
 
+// configure session middleware
+/**
+ * Create a session and store it in a cookie.
+ * NOTE: Browsers will automatically save/send the session id and 
+ * send it in each request to the server; 
+ * however, cURL doesn’t automatically save our session ID
+ */
+app.use(session({
+    name: 'manju.cookie', // optional; if not provided, cookie name would be connect.sid
+    genid: (req) => {
+        console.log('Session middleware', req.sessionID)
+        return uuid() // use UUID's for session id
+    },
+    secret: 'nomnomnom',
+    resave: false,
+    saveUninitialized: true
+}))
+
 app.use((req, res, next) => {
     // logger setup etc
+    console.log('SessionID', req.sessionID)
     next()
 })
+
+// Since we don't have persistence storage yet, lets just hard code this for now
+const USERNAME = 'manju'
+const PASSWD = 'manju123'
+const SECRET = 'nomnom'
 
 passport.use(new BearerStrategy((token, done) => {
     try {
