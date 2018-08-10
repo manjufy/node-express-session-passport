@@ -8,6 +8,10 @@ Illustration of Node app session management with passport
 
 `> node index.js`
 
+Run with nodemon?  do install nodemon globally `npm install nodemon -g`
+
+`nodemon index.js`
+
 Without JWT encoding
 
 <img src="https://github.com/manju16832003/node-express-session-passport/blob/master/images/postman.png?raw=true"/>
