@@ -6,7 +6,7 @@ const LocalStrategy = require('passport-local').Strategy
 const BearerStrategy = require('passport-http-bearer')
 const session = require('express-session')
 const uuid = require('uuid')
-
+const FileStore = require('session-file-store')(session)
 const app = express()
 app.use(bodyParser.json())
 
@@ -20,9 +20,14 @@ app.use(bodyParser.json())
 app.use(session({
     name: 'manju.cookie', // optional; if not provided, cookie name would be connect.sid
     genid: (req) => {
+        /**
+         * If there was no session created, we come here to create a session.
+         * if session is already created, we won't come here again.
+         */
         console.log('Session middleware', req.sessionID)
         return uuid() // use UUID's for session id
     },
+    store: new FileStore(), // creates a session folder and stores the session file in it
     secret: 'nomnomnom',
     resave: false,
     saveUninitialized: true

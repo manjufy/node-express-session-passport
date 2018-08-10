@@ -4,7 +4,9 @@ Illustration of Node app session management with passport
 
 # How to run
 
-`> npm install`
+`> npm run dev`
+
+OR 
 
 `> node index.js`
 
@@ -18,6 +20,12 @@ Without JWT encoding
 
 With JWT encoding
 <img src="https://github.com/manju16832003/node-express-session-passport/blob/master/images/postman-jwt.png?raw=true"/>
+
+### Cookie
+
+Cookie size is 4KB (4093 bytes)
+
+48 Cookies per domain ( do not exceed 50 Cookies per domain)
 
 ### Session
 
@@ -38,11 +46,23 @@ With JWT encoding
 
 <img src="https://github.com/manju16832003/node-express-session-passport/blob/master/images/session.png?raw=true"/>
 
+*Store session in a FileStorage*
+
+- If we use `session-file-store` package, it would create a `sessions` folder in the root directory
+- Each time we create a new session, nodemon will restart the server and causing to create a new session
+- To avoid this issie, we tell the nodemon to ignore session folder `nodemon --ignore sessions/ server.js`
+
 ## Further improvements
 
 - Use Session to authenticate and persist the session in either Cookie or Session storage
 - Use redis as a session storage
 
+### References
+
 https://scotch.io/tutorials/easy-node-authentication-setup-and-local
 
 https://codeburst.io/node-js-by-example-part-3-31a29f5d7e9c
+
+https://blog.risingstack.com/node-hero-node-js-authentication-passport-js/
+
+* https://medium.com/@evangow/server-authentication-basics-express-sessions-passport-and-curl-359b7456003d
