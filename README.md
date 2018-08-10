@@ -8,8 +8,12 @@ Illustration of Node app session management with passport
 
 `> node index.js`
 
-(Plan text without jwt)[https://github.com/manju16832003/node-express-session-passport/blob/master/postman.png?raw=true]
-(Plan text with jwt)[https://github.com/manju16832003/node-express-session-passport/blob/master/postman-jwt.png?raw=true]
+Without JWT encoding
+
+<img src="https://github.com/manju16832003/node-express-session-passport/blob/master/postman.png?raw=true"/>
+
+With JWT encoding
+<img src="https://github.com/manju16832003/node-express-session-passport/blob/master/postman-jwt.png?raw=true"/>
 
 ## Further improvements
 
