@@ -15,6 +15,10 @@ Without JWT encoding
 With JWT encoding
 <img src="https://github.com/manju16832003/node-express-session-passport/blob/master/postman-jwt.png?raw=true"/>
 
+Session
+
+<img src="https://github.com/manju16832003/node-express-session-passport/blob/master/session.png?raw=true"/>
+
 ## Further improvements
 
 - Use Session to authenticate and persist the session in either Cookie or Session storage
