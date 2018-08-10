@@ -15,7 +15,9 @@ Without JWT encoding
 With JWT encoding
 <img src="https://github.com/manju16832003/node-express-session-passport/blob/master/images/postman-jwt.png?raw=true"/>
 
-Session
+### Session
+
+*Browsers will automatically save/send the session id and send it in each request to the server; however, cURL doesn’t automatically save our session ID*
 
 ```
     app.use(session({
