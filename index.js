@@ -48,12 +48,12 @@ const SECRET = 'nomnomnom'
 
 // Bearer strategy to authenticate endpoints with bearer 
 passport.use(new BearerStrategy((token, done) => {
+    console.log('Token', token)
     try {
-        const user = users[0]
-        const { email } = jwt.decode(token, SECRET)
-        if (email === user.email) {
-            done(null, email)
-            return
+        const { user } = jwt.decode(token, SECRET)
+        console.log('Bearer Strategy ', user)
+        if (users[0].email === user.email) {
+            return done(null, user)
         }
     } catch (error) {
         done(null, false)
@@ -61,7 +61,7 @@ passport.use(new BearerStrategy((token, done) => {
 }));
 
 passport.use(new LocalStrategy(
-    { usernameField: 'email' },
+    { usernameField: 'email' }, // passport uses username and password authenticate user, however our app uses email, we alias it here
     (email, password, done) => {
         console.log('Inside local strategy callback')
         // here we can make a call to DB to find the user based on username, password.
@@ -69,8 +69,8 @@ passport.use(new LocalStrategy(
         const user = users[0]
 
     if (email === user.email && password === user.password) {
-        done(null, jwt.encode({ email }, SECRET))
-        return
+        // return done(null, jwt.encode({ user }, SECRET))
+        return done(null, user)
     }
 
     done(null, false)
@@ -82,8 +82,31 @@ passport.serializeUser((user, done) => {
     done(null, user.id)
 })
 
+passport.deserializeUser((id, done) => {
+    console.log('Inside deserializeUser callback')
+    console.log(`The user id passport saved in the session file store is: ${id}`)
+    const user = users[0].id === id ? users[0] : false; 
+    done(null, user);
+})
+
+// tell application to use passport as middleware
+// configure these only after express-session and session-file-store
 app.use(passport.initialize())
 app.use(passport.session())
+
+/**
+ * passport.authenticate automatically invokes, req.login method http://www.passportjs.org/docs/login/
+ */
+app.post('/login', passport.authenticate('local'), (req, res) => {
+    const user = req.user
+    const token = jwt.encode({ user }, SECRET)
+    console.log(`req.session.passport: ${JSON.stringify(req.session.passport)}`)
+    console.log(`req.user: ${JSON.stringify(req.user)}`)
+    res.send({
+        token: token,
+        message: "successfully logged in"
+    })
+})
 
 app.get('/todos', passport.authenticate('bearer', { session: false }), (_, res) => {
     res.json([
@@ -96,13 +119,6 @@ app.get('/todos', passport.authenticate('bearer', { session: false }), (_, res) 
             todo: 'Test'
         }
     ])
-})
-
-app.post('/login', passport.authenticate('local', { session: false }), (req, res) => {
-    console.log('User', req.user)
-    res.send({
-        token: req.user
-    })
 })
 
 app.get('/', (req, res) => res.send('Node Express Passport Session example'))
