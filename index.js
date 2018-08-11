@@ -76,10 +76,13 @@ passport.use(new LocalStrategy(
     done(null, false)
 }))
 
-// tell passport how to serialise the user
+/**
+ * tell passport how to serialise the user
+ * Serialises user into session and determines which data of the user object should be stored in session.
+ */
 passport.serializeUser((user, done) => {
     console.log('Inside serialise cb. User id is stored to the session file store here')
-    done(null, user.id)
+    done(null, user.id) // store the user.id into session
 })
 
 passport.deserializeUser((id, done) => {
