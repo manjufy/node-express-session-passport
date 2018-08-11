@@ -49,9 +49,10 @@ const SECRET = 'nomnomnom'
 // Bearer strategy to authenticate endpoints with bearer 
 passport.use(new BearerStrategy((token, done) => {
     try {
+        const user = users[0]
         const { email } = jwt.decode(token, SECRET)
-        if (email === USERNAME) {
-            done(null, username)
+        if (email === user.email) {
+            done(null, email)
             return
         }
     } catch (error) {

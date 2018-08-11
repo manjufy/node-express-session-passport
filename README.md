@@ -21,6 +21,17 @@ Without JWT encoding
 With JWT encoding
 <img src="https://github.com/manju16832003/node-express-session-passport/blob/master/images/postman-jwt.png?raw=true"/>
 
+*Testing Endpoint with Authorisation*
+
+- Call `POST /locahost:3000/login` endpint and get the access token
+
+<img src="https://github.com/manju16832003/node-express-session-passport/blob/master/images/request-token.png?raw=true">
+
+- Call `GET /localhost:3000/todos` with Authorisation bearer with the token
+
+<img src="https://github.com/manju16832003/node-express-session-passport/blob/master/images/authorisation-bearer.png?raw=true">
+
+
 ### Cookie
 
 Cookie size is 4KB (4093 bytes)
