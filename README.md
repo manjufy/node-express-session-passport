@@ -1,5 +1,7 @@
 ### Node+Express+Passport: Session, Authentication, Authorization with passport
 
+__Documentation is still in progress__
+
 Illustration of Node app session management with passport
 
 # How to run
