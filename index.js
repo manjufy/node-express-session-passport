@@ -41,14 +41,16 @@ app.use((req, res, next) => {
 
 // Since we don't have persistence storage yet, lets just hard code this for now
 const users = [
-    { id: 1234, email: 'manju@iformula1.com', password: 'abc123' }
+    { id: 1234, email: 'manju@manju', password: 'abc123' }
 ]
+
+const SECRET = 'nomnomnom'
 
 // Bearer strategy to authenticate endpoints with bearer 
 passport.use(new BearerStrategy((token, done) => {
     try {
-        const { username } = jwt.decode(token, SECRET)
-        if (username === USERNAME) {
+        const { email } = jwt.decode(token, SECRET)
+        if (email === USERNAME) {
             done(null, username)
             return
         }
@@ -59,14 +61,14 @@ passport.use(new BearerStrategy((token, done) => {
 
 passport.use(new LocalStrategy(
     { usernameField: 'email' },
-    (username, password, done) => {
+    (email, password, done) => {
         console.log('Inside local strategy callback')
         // here we can make a call to DB to find the user based on username, password.
         // for now, lets use the hardcode ones
         const user = users[0]
 
-    if (username === user.email && password === user.password) {
-        done(null, jwt.encode({ username }, SECRET))
+    if (email === user.email && password === user.password) {
+        done(null, jwt.encode({ email }, SECRET))
         return
     }
 
@@ -78,6 +80,9 @@ passport.serializeUser((user, done) => {
     console.log('Inside serialise cb. User id is stored to the session file store here')
     done(null, user.id)
 })
+
+app.use(passport.initialize())
+app.use(passport.session())
 
 app.get('/todos', passport.authenticate('bearer', { session: false }), (_, res) => {
     res.json([
@@ -93,6 +98,7 @@ app.get('/todos', passport.authenticate('bearer', { session: false }), (_, res) 
 })
 
 app.post('/login', passport.authenticate('local', { session: false }), (req, res) => {
+    console.log('User', req.user)
     res.send({
         token: req.user
     })
