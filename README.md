@@ -52,6 +52,11 @@ Cookie size is 4KB (4093 bytes)
 - Each time we create a new session, nodemon will restart the server and causing to create a new session
 - To avoid this issie, we tell the nodemon to ignore session folder `nodemon --ignore sessions/ server.js`
 
+
+## Passport serialise and deserialise explained
+
+https://stackoverflow.com/questions/27637609/understanding-passport-serialize-deserialize
+
 ## Further improvements
 
 - Use Session to authenticate and persist the session in either Cookie or Session storage

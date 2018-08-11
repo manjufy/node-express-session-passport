@@ -40,10 +40,11 @@ app.use((req, res, next) => {
 })
 
 // Since we don't have persistence storage yet, lets just hard code this for now
-const USERNAME = 'manju'
-const PASSWD = 'manju123'
-const SECRET = 'nomnom'
+const users = [
+    { id: 1234, email: 'manju@iformula1.com', password: 'abc123' }
+]
 
+// Bearer strategy to authenticate endpoints with bearer 
 passport.use(new BearerStrategy((token, done) => {
     try {
         const { username } = jwt.decode(token, SECRET)
@@ -56,14 +57,27 @@ passport.use(new BearerStrategy((token, done) => {
     }
 }));
 
-passport.use(new LocalStrategy((username, password, done) => {
-    if (username === USERNAME && password === PASSWD) {
+passport.use(new LocalStrategy(
+    { usernameField: 'email' },
+    (username, password, done) => {
+        console.log('Inside local strategy callback')
+        // here we can make a call to DB to find the user based on username, password.
+        // for now, lets use the hardcode ones
+        const user = users[0]
+
+    if (username === user.email && password === user.password) {
         done(null, jwt.encode({ username }, SECRET))
         return
     }
 
     done(null, false)
 }))
+
+// tell passport how to serialise the user
+passport.serializeUser((user, done) => {
+    console.log('Inside serialise cb. User id is stored to the session file store here')
+    done(null, user.id)
+})
 
 app.get('/todos', passport.authenticate('bearer', { session: false }), (_, res) => {
     res.json([
