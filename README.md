@@ -81,4 +81,5 @@ https://codeburst.io/node-js-by-example-part-3-31a29f5d7e9c
 
 https://blog.risingstack.com/node-hero-node-js-authentication-passport-js/
 
-* https://medium.com/@evangow/server-authentication-basics-express-sessions-passport-and-curl-359b7456003d
+
+*https://medium.com/@evangow/server-authentication-basics-express-sessions-passport-and-curl-359b7456003d
