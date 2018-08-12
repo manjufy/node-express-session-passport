@@ -111,6 +111,15 @@ app.post('/login', passport.authenticate('local'), (req, res) => {
     })
 })
 
+// authorised endpiont. Must be logged into access this endpoint
+app.get('/authrequired', (req, res) => {
+    if(req.isAuthenticated()) {
+      res.send('you hit the authentication endpoint\n')
+    } else {
+      res.redirect('/')
+    }
+})
+
 app.get('/todos', passport.authenticate('bearer', { session: false }), (_, res) => {
     res.json([
         {
