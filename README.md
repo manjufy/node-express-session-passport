@@ -1,8 +1,11 @@
 ### Node+Express+Passport: Session, Authentication, Authorization with passport
 
-__Documentation is still in progress__
+Demonstration of how to use Passport with Node and Express
 
-Illustration of Node app session management with passport
+- How to set up passport to authenticate
+- How to set up session and cookies, and session storage
+- How to setup local strategy to authenticate
+- How to setup bearer to authorise an endpoint
 
 # How to run
 
