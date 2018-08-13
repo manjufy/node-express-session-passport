@@ -41,7 +41,7 @@ app.use((req, res, next) => {
 
 // Since we don't have persistence storage yet, lets just hard code this for now
 const users = [
-    { id: 1234, email: 'manju@manju', password: 'abc123' }
+    { id: 1234, email: 'manju@manju.com', password: 'abc123' }
 ]
 
 const SECRET = 'nomnomnom'

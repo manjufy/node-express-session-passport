@@ -16,22 +16,27 @@ Run with nodemon?  do install nodemon globally `npm install nodemon -g`
 
 `nodemon index.js`
 
-Without JWT encoding
+## Login
 
-<img src="https://github.com/manju16832003/node-express-session-passport/blob/master/images/postman.png?raw=true"/>
+Use postman or curl or any http tool to call
 
-With JWT encoding
-<img src="https://github.com/manju16832003/node-express-session-passport/blob/master/images/postman-jwt.png?raw=true"/>
+- Call Call `POST /locahost:3000/login` endpint and get the access token (refer to index.js file to username/password)
 
-*Testing Endpoint with Authorisation*
+<img src="https://github.com/manju16832003/node-express-session-passport/blob/master/images/login.png?raw=true">
 
-- Call `POST /locahost:3000/login` endpint and get the access token
+## Authorisation
 
-<img src="https://github.com/manju16832003/node-express-session-passport/blob/master/images/request-token.png?raw=true">
+Try to access `GET /localhost:3000/todos` -> Endpoint returns Unauthorised as it requires Bearer token to access the endpoint
 
-- Call `GET /localhost:3000/todos` with Authorisation bearer with the token
+From the previous endpoint `POST /locahost:3000/login` -> Copy the token from the response and use it in the header request with `Authorisation: Bearer <token>`
 
-<img src="https://github.com/manju16832003/node-express-session-passport/blob/master/images/authorisation-bearer.png?raw=true">
+```
+app.get('/todos', passport.authenticate('bearer', { session: false }), (_, res) => {
+```
+
+<img src="https://github.com/manju16832003/node-express-session-passport/blob/master/images/login-unauthorised.png?raw=true">
+
+<img src="https://github.com/manju16832003/node-express-session-passport/blob/master/images/login-authorised.png?raw=true">
 
 
 ### Cookie
