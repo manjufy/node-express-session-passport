@@ -93,3 +93,9 @@ https://blog.risingstack.com/node-hero-node-js-authentication-passport-js/
 
 
 *https://medium.com/@evangow/server-authentication-basics-express-sessions-passport-and-curl-359b7456003d
+
+https://github.com/passport/express-4.x-facebook-example
+
+https://appdividend.com/2017/12/21/simple-nodejs-authentication-system-using-passport/
+
+https://medium.com/@tkssharma/authentication-using-passport-js-social-auth-with-node-js-1e1ec7086ded
